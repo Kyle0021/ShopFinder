@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D5588C023324B96005F508C /* ShopFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D12835523324AC600A00896 /* ShopFramework.framework */; };
 		6D72F6A423311A0D005BABC2 /* AppName2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D72F6A323311A0C005BABC2 /* AppName2.png */; };
 		6D72F6A9233121DC005BABC2 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D72F6A8233121DC005BABC2 /* CityCell.swift */; };
 		6D87470623317C460022F448 /* Malls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87470523317C460022F448 /* Malls.swift */; };
@@ -27,29 +26,30 @@
 		6D96ADF42330FCB800F206E2 /* Logo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF32330FCB800F206E2 /* Logo_1.png */; };
 		6D96ADF62330FD3100F206E2 /* logo_entersekt.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF52330FD3100F206E2 /* logo_entersekt.png */; };
 		6D96ADF82331077900F206E2 /* AppName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF72331077900F206E2 /* AppName.png */; };
+		6DA447BD2332F47700505565 /* ShopFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA447BA2332F45B00505565 /* ShopFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6D12835423324AC600A00896 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6D128330233249E800A00896;
-			remoteInfo = ShopFramework;
-		};
-		6D12835623324AC600A00896 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6D128339233249E800A00896;
-			remoteInfo = ShopFrameworkTests;
-		};
 		6D96ADE42330283200F206E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6D96ADC42330283100F206E2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6D96ADCB2330283100F206E2;
 			remoteInfo = ShopFinderApp;
+		};
+		6DA447B92332F45B00505565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6D128330233249E800A00896;
+			remoteInfo = ShopFramework;
+		};
+		6DA447BB2332F45B00505565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6D128339233249E800A00896;
+			remoteInfo = ShopFrameworkTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D5588C023324B96005F508C /* ShopFramework.framework in Frameworks */,
+				6DA447BD2332F47700505565 /* ShopFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,15 +105,6 @@
 				6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6D12835023324AC600A00896 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6D12835523324AC600A00896 /* ShopFramework.framework */,
-				6D12835723324AC600A00896 /* ShopFrameworkTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		6D72F6A5233120F6005BABC2 /* Collection & Table View Cells */ = {
@@ -202,6 +193,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		6DA447B52332F45B00505565 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DA447BA2332F45B00505565 /* ShopFramework.framework */,
+				6DA447BC2332F45B00505565 /* ShopFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,7 +272,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 6D12835023324AC600A00896 /* Products */;
+					ProductGroup = 6DA447B52332F45B00505565 /* Products */;
 					ProjectRef = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
 				},
 			);
@@ -285,18 +285,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6D12835523324AC600A00896 /* ShopFramework.framework */ = {
+		6DA447BA2332F45B00505565 /* ShopFramework.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ShopFramework.framework;
-			remoteRef = 6D12835423324AC600A00896 /* PBXContainerItemProxy */;
+			remoteRef = 6DA447B92332F45B00505565 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6D12835723324AC600A00896 /* ShopFrameworkTests.xctest */ = {
+		6DA447BC2332F45B00505565 /* ShopFrameworkTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ShopFrameworkTests.xctest;
-			remoteRef = 6D12835623324AC600A00896 /* PBXContainerItemProxy */;
+			remoteRef = 6DA447BB2332F45B00505565 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
