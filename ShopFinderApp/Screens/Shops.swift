@@ -19,6 +19,7 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var shopTableView: UITableView!
     @IBOutlet var btnRetrieveByID: UIButton!
     @IBOutlet var btnRetrieveAll: UIButton!
+    @IBOutlet var tableViewTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
             btnRetrieveByID.backgroundColor = UIColor.init(rgb: 0x126FBE)
             btnRetrieveAll.backgroundColor = UIColor.init(rgb: 0xFC6917)
             shops = Requests().getShopListByMallID(cityID: selectedCityID, mallID: selectedMallID)
+            tableViewTopConstraint.constant = 73
+
         }
         else
         {
@@ -46,6 +49,7 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
             btnRetrieveAll.isEnabled = false
             btnRetrieveByID.backgroundColor = UIColor.lightGray
             btnRetrieveAll.backgroundColor = UIColor.lightGray
+            tableViewTopConstraint.constant = 0
         }
         
         //set the title of the screen - navbar

@@ -392,7 +392,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="113" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i5a-nP-tb2">
-                                <rect key="frame" x="0.0" y="73" width="414" height="741"/>
+                                <rect key="frame" x="0.0" y="73" width="414" height="735"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.92941176469999998" green="0.95686274510000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -449,7 +449,7 @@
                             <constraint firstItem="i5a-nP-tb2" firstAttribute="top" secondItem="3aD-Nk-Grn" secondAttribute="bottom" constant="17" id="3sO-go-rXu"/>
                             <constraint firstItem="3aD-Nk-Grn" firstAttribute="width" secondItem="wby-2H-que" secondAttribute="width" id="5A0-II-A7s"/>
                             <constraint firstItem="wby-2H-que" firstAttribute="bottom" secondItem="3aD-Nk-Grn" secondAttribute="bottom" id="9aT-Ny-Fh3"/>
-                            <constraint firstAttribute="bottom" secondItem="i5a-nP-tb2" secondAttribute="bottom" constant="-6" id="EYW-5i-E03"/>
+                            <constraint firstAttribute="bottom" secondItem="i5a-nP-tb2" secondAttribute="bottom" id="EYW-5i-E03"/>
                             <constraint firstItem="i5a-nP-tb2" firstAttribute="leading" secondItem="832-cS-eYQ" secondAttribute="leading" id="K2p-Tq-UZi"/>
                             <constraint firstItem="i5a-nP-tb2" firstAttribute="top" secondItem="832-cS-eYQ" secondAttribute="top" constant="73" id="PM8-FG-IVE"/>
                             <constraint firstItem="i5a-nP-tb2" firstAttribute="trailing" secondItem="832-cS-eYQ" secondAttribute="trailing" id="Vap-Go-fve"/>
@@ -468,6 +468,7 @@
                         <outlet property="btnRetrieveAll" destination="3aD-Nk-Grn" id="nIa-zM-AIL"/>
                         <outlet property="btnRetrieveByID" destination="wby-2H-que" id="xVO-f8-Kbv"/>
                         <outlet property="shopTableView" destination="i5a-nP-tb2" id="dcV-Eo-9a8"/>
+                        <outlet property="tableViewTopConstraint" destination="PM8-FG-IVE" id="Gg3-xX-nRT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rm-b3-sGK" userLabel="First Responder" sceneMemberID="firstResponder"/>

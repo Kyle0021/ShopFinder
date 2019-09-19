@@ -26,6 +26,9 @@
 		6D96ADF42330FCB800F206E2 /* Logo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF32330FCB800F206E2 /* Logo_1.png */; };
 		6D96ADF62330FD3100F206E2 /* logo_entersekt.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF52330FD3100F206E2 /* logo_entersekt.png */; };
 		6D96ADF82331077900F206E2 /* AppName.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D96ADF72331077900F206E2 /* AppName.png */; };
+		6DF42DD02333456C007C3386 /* ShopFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF42DCD233342CC007C3386 /* ShopFramework.framework */; };
+		6DF42DD1233345F6007C3386 /* ShopFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF42DCD233342CC007C3386 /* ShopFramework.framework */; };
+		6DF42DD2233345F6007C3386 /* ShopFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF42DCD233342CC007C3386 /* ShopFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,42 @@
 			remoteGlobalIDString = 6D96ADCB2330283100F206E2;
 			remoteInfo = ShopFinderApp;
 		};
+		6DF42DCC233342CC007C3386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6D128330233249E800A00896;
+			remoteInfo = ShopFramework;
+		};
+		6DF42DCE233342CC007C3386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6D128339233249E800A00896;
+			remoteInfo = ShopFrameworkTests;
+		};
+		6DF42DD3233345F6007C3386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D12832F233249E800A00896;
+			remoteInfo = ShopFramework;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6DF42DD5233345F6007C3386 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6DF42DD2233345F6007C3386 /* ShopFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShopFramework.xcodeproj; path = "../../../../../../../../../Users/KyleFernandez/Desktop/Latest Test App/ShopFramework/ShopFramework.xcodeproj"; sourceTree = SDKROOT; };
@@ -70,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF42DD02333456C007C3386 /* ShopFramework.framework in Frameworks */,
+				6DF42DD1233345F6007C3386 /* ShopFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +217,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		6DF42DC8233342C9007C3386 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DF42DCD233342CC007C3386 /* ShopFramework.framework */,
+				6DF42DCF233342CC007C3386 /* ShopFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,10 +236,12 @@
 				6D96ADC82330283100F206E2 /* Sources */,
 				6D96ADC92330283100F206E2 /* Frameworks */,
 				6D96ADCA2330283100F206E2 /* Resources */,
+				6DF42DD5233345F6007C3386 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6DF42DD4233345F6007C3386 /* PBXTargetDependency */,
 			);
 			name = ShopFinderApp;
 			productName = ShopFinderApp;
@@ -245,6 +296,12 @@
 			mainGroup = 6D96ADC32330283100F206E2;
 			productRefGroup = 6D96ADCD2330283100F206E2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6DF42DC8233342C9007C3386 /* Products */;
+					ProjectRef = 6D12834F23324AC600A00896 /* ShopFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6D96ADCB2330283100F206E2 /* ShopFinderApp */,
@@ -252,6 +309,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6DF42DCD233342CC007C3386 /* ShopFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShopFramework.framework;
+			remoteRef = 6DF42DCC233342CC007C3386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6DF42DCF233342CC007C3386 /* ShopFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ShopFrameworkTests.xctest;
+			remoteRef = 6DF42DCE233342CC007C3386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6D96ADCA2330283100F206E2 /* Resources */ = {
@@ -311,6 +385,11 @@
 			isa = PBXTargetDependency;
 			target = 6D96ADCB2330283100F206E2 /* ShopFinderApp */;
 			targetProxy = 6D96ADE42330283200F206E2 /* PBXContainerItemProxy */;
+		};
+		6DF42DD4233345F6007C3386 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShopFramework;
+			targetProxy = 6DF42DD3233345F6007C3386 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -453,6 +532,7 @@
 		6D96ADED2330283200F206E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RC85Z5UT49;
@@ -471,6 +551,7 @@
 		6D96ADEE2330283200F206E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RC85Z5UT49;
