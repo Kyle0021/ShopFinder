@@ -11,5 +11,6 @@ Uses a custom built framework included in the project called, ShopFramework, to 
 - Search cities, malls, and shops by ID
 - App can be used offline, as it stores the latest data from the last internet connected session.
 
-![First Screen - List of cities](https://github.com/Kyle0021/ShopFinder/blob/master/Gif_sample.gif)
+![Sample Gif](https://github.com/Kyle0021/ShopFinder/blob/master/Gif_sample.gif)
 ![App icon on Home Screen - List of cities](https://github.com/Kyle0021/ShopFinder/blob/master/App%20Icon.png)
+![Sample of select by ID](https://github.com/Kyle0021/ShopFinder/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%208%20-%202019-09-19%20at%2009.43.08.png)
