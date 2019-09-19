@@ -13,23 +13,26 @@ var selectedMallID: Int!
 var shopsScreenTitles: String!
 
 class Malls: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    // UI Objects
     @IBOutlet var mallTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var btnMallByID: UIButton!
     @IBOutlet var btnRetrieveAll: UIButton!
     
+    // used to store the mall array of dictionaries that is returned from framework
     var malls = [NSDictionary]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // customise navigation bar
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.init(rgb: 0x0A2343)
         navigationController?.navigationBar.tintColor = UIColor.init(rgb: 0xFC6917)
         
+        // round button corners
         btnMallByID.layer.cornerRadius = 3.0
         btnRetrieveAll.layer.cornerRadius = 3.0
         
@@ -40,25 +43,34 @@ class Malls: UIViewController, UITableViewDelegate, UITableViewDataSource {
         malls = Requests().getMallListByCityID(cityID: selectedCityID)
         
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
     
-    override func viewWillDisappear(_ animated: Bool) {
-    }
-    
+    // search for a mall by ID
+    // uses the alertcontroller with a textfield
+    // id from textfield is passed into framework method
     @IBAction func tappedRetrieveByID(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Search By Mall ID", message: "", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "Search By Mall ID", message: "Enter numeric values only.", preferredStyle: UIAlertController.Style.alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter a Mall ID"
         }
         let searchAction = UIAlertAction(title: "Search", style: UIAlertAction.Style.default, handler: { alert -> Void in
             let firstTextField = alertController.textFields![0] as UITextField
-            self.malls = Requests().getParticularMallByID(cityID: selectedCityID, strMallID: firstTextField.text!)
-            self.mallTableView.reloadData()
-
+            
+            // won't continue if user didn't enter decimal digits
+            if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: firstTextField.text!)) {
+                
+                let errorController = UIAlertController(title: "", message: "Please enter numeric values only", preferredStyle: UIAlertController.Style.alert)
+                
+                errorController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                self.present(errorController, animated: true, completion: nil)
+                
+            }
+            else{
+                self.malls = Requests().getParticularMallByID(cityID: selectedCityID, strMallID: firstTextField.text!)
+                self.mallTableView.reloadData()
+                
+            }
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
             (action : UIAlertAction!) -> Void in })
@@ -69,13 +81,14 @@ class Malls: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // retrieves list of all malls
     @IBAction func tappedRetrieveAll(_ sender: Any) {
-        //get the list of malls from the city that was selected
+        //framework call for all malls from the city that was selected
         malls = Requests().getMallListByCityID(cityID: selectedCityID)
         mallTableView.reloadData()
     }
     
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return malls.count
@@ -105,9 +118,11 @@ class Malls: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    // move to next screen when user clicks on table row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         selectedMallID = (((malls[indexPath.row] as NSDictionary)["id"] as? Int))!
+        // set screen title for shop screen
         shopsScreenTitles = "Shops in " + (((malls[indexPath.row] as NSDictionary)["name"] as? String))!
         
         performSegue(withIdentifier: "GoToShops", sender: self)

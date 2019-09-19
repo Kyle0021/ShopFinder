@@ -14,7 +14,7 @@ var shopScreenTitle: String!
 var shops = [NSDictionary]()
 
 class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     // UI Objects
     @IBOutlet var shopTableView: UITableView!
     @IBOutlet var btnRetrieveByID: UIButton!
@@ -23,16 +23,19 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // customise navigation bar
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = UIColor.init(rgb: 0x0A2343)
         navigationController?.navigationBar.tintColor = UIColor.init(rgb: 0xFC6917)
         
+        // round button corners
         btnRetrieveByID.layer.cornerRadius = 3.0
         btnRetrieveAll.layer.cornerRadius = 3.0
         
+        // if shops array is empty then call getShopList based on the mall that was selected
+        // make sure button to search particular shop in a mall is visible
         if shops.count == 0
         {
             btnRetrieveByID.isEnabled = true
@@ -41,8 +44,11 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
             btnRetrieveAll.backgroundColor = UIColor.init(rgb: 0xFC6917)
             shops = Requests().getShopListByMallID(cityID: selectedCityID, mallID: selectedMallID)
             tableViewTopConstraint.constant = 73
-
+            
         }
+            // user click button on the first screen to view all shops in particular city
+            // shops array is already loaded with the information
+            // hide the search button to search a particular shop in a mall
         else
         {
             btnRetrieveByID.isEnabled = false
@@ -57,26 +63,45 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //make sure nav bar is visible
         self.navigationController?.setNavigationBarHidden(false, animated: false);
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-      
+        // clears the shops array of dictionaries when leaving - prevents appending of new data to old.
         shops = [NSDictionary]()
     }
     
+    // search for a shop by ID
+    // uses the alertcontroller with a textfield
+    // id from textfield is passed into framework method
     @IBAction func tappedRetrieveShopByID(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Search By Shop ID", message: "", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "Search By Shop ID", message: "Please enter numeric values only", preferredStyle: UIAlertController.Style.alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter a Shop ID"
         }
         let searchAction = UIAlertAction(title: "Search", style: UIAlertAction.Style.default, handler: { alert -> Void in
             let firstTextField = alertController.textFields![0] as UITextField
             
-            shops = Requests().getParticularShopByID(cityID: selectedCityID, mallID: selectedMallID, strShopID: firstTextField.text!)
+            // won't continue if user didn't enter decimal digits
+            if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: firstTextField.text!)) {
+                
+                let errorController = UIAlertController(title: "", message: "Please enter numeric values only", preferredStyle: UIAlertController.Style.alert)
+                
+                errorController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                self.present(errorController, animated: true, completion: nil)
+                
+            }
+            else{
+                shops = Requests().getParticularShopByID(cityID: selectedCityID, mallID: selectedMallID, strShopID: firstTextField.text!)
+                
+                self.shopTableView.reloadData()
+            }
             
-            self.shopTableView.reloadData()
+            
+            
             
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
@@ -88,6 +113,7 @@ class Shops: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // retries all shops in the mall
     @IBAction func tappedRetrieveAll(_ sender: Any) {
         
         shops = Requests().getShopListByMallID(cityID: selectedCityID, mallID: selectedMallID)

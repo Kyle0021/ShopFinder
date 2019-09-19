@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// allows an rgb color to be sent in - for convenience
+// allows an rgb color to be sent in - easier to add hex colours on the fly
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")

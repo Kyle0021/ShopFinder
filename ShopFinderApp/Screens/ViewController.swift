@@ -10,10 +10,9 @@ import UIKit
 import Foundation
 import ShopFramework
 
-var jsonData = [NSDictionary]()
 var selectedCityID: Int!
 var mallScreenTitle: String!
-
+//use to store city object received from framework
 var cityObject = [[String: Any]]()
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -26,19 +25,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // customise layout of collectionview
         if let flowLayout = cityColView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.sectionInset.bottom = 40
         }
         
+        //hide views - they will be unhidden once the datasources are ready
         cityColView.isHidden = true
         loadingView.isHidden = false
         
+        //round button corners
         btnSearchByID.layer.cornerRadius = 3.0
         btnRetrieveAll.layer.cornerRadius = 3.0
         
-        // call method from framework
-        // gets a custom built list of cities
+        // call first method from framework
+        // gets a custom built list of cities to plug into my UI
         Requests().getCities(completionHandler: {citiesArr in
             cityObject = citiesArr
             self.cityColView.reloadData()
@@ -47,42 +49,60 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Hide navigationbar on first screen
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // make sure navigationbar is visible when entering the next screen
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
         super.viewWillDisappear(animated)
     }
     
+    // search for a city particular city by ID
+    // uses the alertcontroller with a textfield
+    // id from textfield is passed into framework method
     @IBAction func tappedSearch(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Search By City ID", message: "", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "Search By City ID", message: "Enter numeric values only.", preferredStyle: UIAlertController.Style.alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter a city ID"
         }
         let searchAction = UIAlertAction(title: "Search", style: UIAlertAction.Style.default, handler: { alert -> Void in
             let firstTextField = alertController.textFields![0] as UITextField
-            cityObject = Requests().getParticularCityByID(strCityID: firstTextField.text! ) as! [[String : Any]]
-            self.cityColView.reloadData()
+            
+            // won't continue if user didn't enter decimaldigits
+            if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: firstTextField.text!)) {
+                
+                let errorController = UIAlertController(title: "", message: "Please enter numeric values only", preferredStyle: UIAlertController.Style.alert)
+                
+                errorController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                self.present(errorController, animated: true, completion: nil)
+                
+            }
+            else{
+                //framework method call
+                //reload the collectionview and display new result
+                cityObject = Requests().getParticularCityByID(strCityID: firstTextField.text! ) as! [[String : Any]]
+                self.cityColView.reloadData()
+            }
+            
+            
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
             (action : UIAlertAction!) -> Void in })
-     
+        
         alertController.addAction(searchAction)
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // retrieves list of all cities
     @IBAction func tappedRetrieveAll(_ sender: Any) {
         
         // gets a custom built list of cities
@@ -131,10 +151,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     // user tapped the view malls button
+    // will transition to malls screen
     @objc func tappedViewMalls(sender: UIButton) {
-       
+        
+        //stores the selected city ID for future function calls to the framework
         selectedCityID = sender.tag
-
+        
+        // creates the title for the mall screen
         for city in cityObject
         {
             if city["city id"] as? Int == selectedCityID
@@ -156,6 +179,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 shopsScreenTitles = "Shops in " + (city["name"] as? String)!
             }
         }
+        // method to get all shops
         shops = Requests().getListOfShopsInCity(cityID: selectedCityID)
     }
 }
