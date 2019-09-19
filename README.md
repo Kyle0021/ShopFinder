@@ -12,3 +12,4 @@ Uses a custom built framework included in the project called, ShopFramework, to 
 - App can be used offline, as it stores the latest data from the last internet connected session.
 
 ![First Screen - List of cities](https://github.com/Kyle0021/ShopFinder/blob/master/Gif_sample.gif)
+![App icon on Home Screen - List of cities](https://github.com/Kyle0021/ShopFinder/blob/master/App%20Icon.png)
