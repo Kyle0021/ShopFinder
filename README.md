@@ -1,4 +1,5 @@
 # ShopFinder
+- An app I created as part of a recruitment test.
 - A framework downloads, stores, manipulates and sends back all the data.
 - The App calls the framework methods to get all the data that is displayed in the app.
 
